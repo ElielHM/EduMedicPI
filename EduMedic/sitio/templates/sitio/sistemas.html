@@ -1,0 +1,103 @@
+{% extends "sitio/estructura.html" %}
+{% block titulo %}Sistemas del cuerpo humano{% endblock titulo %}
+{% block body %} style="overflow: hidden" {% endblock body %}
+{% block contenido %}
+{% load static %}
+<script>
+    const menuuu= document.getElementById('rv');
+    menuuu.classList.add("active")
+</script>
+<div class="aframe">
+<a-scene embedded>
+   
+
+        <a-camera>
+            <a-cursor
+                geometry="primitive: circle; radius:0.01 px"
+                color="#ACCBE8"
+                raycaster="objects: .point"
+                fuse="true"
+            ></a-cursor>
+        </a-camera>
+
+        <a-asssets>
+            <!--Botones-->
+            <image
+               src="{% static "sitio/img/back.png" %}"
+                id="back"
+             ></image>
+            <image
+                src="{% static "sitio/img/home.png" %}"
+                id="home"
+            ></image>
+            <image
+                src="{% static "sitio/img/cardio.png" %}"
+                id="cardio"
+            ></image>
+            <image
+                src="{% static "sitio/img/muscular.png" %}"
+                id="muscular"
+            ></image>
+            <image
+                src="{% static "sitio/img/óseo.png" %}"
+                id="oseo"
+            ></image>
+        </a-asssets>
+
+        <a-plane
+            transparent="true"
+            position="-7, 5, -5"
+           class=". point"
+           onclick="window.location.href='{% url "RV" %}'"
+            src="#back"onmouseenter="document.querySelector('#ayudap').setAttribute('visible', true)"
+           onmouseleave="document.querySelector('#ayudap').setAttribute('visible', false)"
+        >
+            <a-entity
+           position="0, -0.5, 0"
+           text="
+               value: Regresar;
+               color: gray;
+               align: left;
+               width:7
+               "
+           visible="false"
+           id="ayudap"
+       ></a-entity>
+        </a-plane>
+
+        <!--Menu-->
+                <!--Sistema A-->
+        <a-plane
+            width="5" height="5"
+            transparent="true"
+            position="-6, -1, -5"
+           class=". point"
+           onclick="window.location.href='{% url "sisA" %}'"
+            src="#cardio">
+        </a-plane>
+                <!--Sistema B-->
+        <a-plane
+            width="5" height="5"
+            transparent="true"
+            position="0, -1, -5"
+           class=". point"
+           onclick="window.location.href='{% url "sisB" %}'"
+            src="#muscular">
+        </a-plane>
+
+                <!--Sistema C-->
+        <a-plane
+            width="5" height="5"
+            transparent="true"
+            position="6, -1, -5"
+           class=". point"
+           onclick="window.location.href='{% url "sisC" %}'"
+            src="#oseo">
+        </a-plane>
+
+
+   
+</a-scene>
+</div>
+
+{% endblock contenido %}

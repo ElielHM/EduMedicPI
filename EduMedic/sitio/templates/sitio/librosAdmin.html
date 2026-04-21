@@ -1,0 +1,96 @@
+{% extends "sitio/estructura.html" %}
+{% block titulo %} Libros {% endblock titulo %}
+{% load static %}
+
+{% block contenido %}
+
+<script>
+  function card(id) {
+    document.getElementById("card" + id).showModal();
+  }
+
+  const menuuu= document.getElementById('biblioteca');
+  menuuu.classList.add("active")
+
+  function closeC(id){
+    console.log("cerrando card "+id)
+    document.getElementById("card" + id).close();
+  }
+</script>
+
+<section id="hero" class="hero section light-background">
+  <hr style="margin-top: -3%; margin-bottom: 50px;">
+  <div class="container">
+    <div style="display: flex;">
+    <h2> Libros</h2>
+    <form style="margin-left: 17%;margin-top: .5%;" action="{% url "LibrosAdmin" %}" method="POST" class="buscar" novalidate>
+      {% csrf_token %}
+      <input type="text" value="" name="titulo" id="titulo" placeholder="Buscar por nombre">
+      <select name="categoria" id="categoria" style="color: white;">
+        <option value="NA" hidden selected>-Seleccionar categoria-</option>
+        <option value="Anatomia">Anatomia</option>
+        <option value="Cardiologia">Cardiologia</option>
+        <option value="Enfermeria">Enfermeria</option>
+        <option value="Farmacologia">Farmacologia</option>
+        <option value="Fisiologia">Fisiologia</option>
+
+      </select>
+      <button type="submit" style="color: white">Buscar</button>
+      <a  href="{% url "LibrosAdmin" %}"><button type="button" style="color: white;">Mostrar todo</button></a>
+      <a  href="{% url "NoAprobados" %}"><button type="button" style="color: white;">No Aprobados</button></a>
+    </form>
+    
+    </div>
+    <br>
+    <div style='margin-left: 2%;margin-right: 2%;border: 2px solid black;border-radius: 20px;padding: 3%;'>
+      <ul style="list-style: none;">
+        {% for libro in libros %}
+        <a style="cursor: pointer;" onclick="card('{{libro.id}}')">
+          <li>
+            <h5>{{libro.titulo}} </h5> <span style="font-family: 'Century Gothic';color: #aaaaaa;">{{libro.autor | safe}} | {{libro.categoria | safe}}</span>
+          </li>
+        </a>
+        <hr>
+
+        <dialog class="notadlg" id="card{{libro.id}}" style="width: 70%;height: 60%;padding:0%;font-family:'Century Gothic';border: 2px solid black;border-radius: 20px;">
+
+          <div style="display: flex;background-color: white;position: fixed;width: 1%;margin-top: 0.5px;padding-bottom: 30px;border-radius: 20px;right: 22%;">
+            
+            <p style="flex: 85%;"></p>
+            <a style="justify-content: right; margin-right:10% margin-top:5px;cursor: pointer;" onclick="closeC('{{libro.id}}')"><img style="height: 30px;width: 30px;" src="{% static "sitio/img/cerrar.png" %}" alt=""></a>
+            <br>
+          </div>
+          <div style="display: flex;width: 95%;">
+          <img src="/media/{{libro.portada}}" alt="" style="width: 25vw;height: 28.6vw;left: 5%;">
+          <div class="infoLibro" style="flex-direction: column;">
+          <p style="font-size: 110%;"><strong> {{libro.titulo}} </strong></p>
+          <p><strong> Escrito por:  </strong>{{libro.autor}}</p>
+          <p><strong> ISBN: </strong>{{libro.isbn}}</p>
+          <p><strong> Fecha de publicación: </strong>{{libro.fecha}}</p>
+          <p><strong> Categoria: </strong>{{libro.categoria}}</p>
+          <a href="/media/{{libro.url}}" target="_blank" style="outline: none;"><button style="color: white;">Leer Libro</button></a>
+          <a href="{% url "Aprobar" libro.id%}" class='Aprobar {{libro.aprobado}}'><button style="color: white;background: green; margin-bottom:10%;">Aprobar</button></a>
+          <a href="{% url "Quitar" libro.id%}" class='Quitar {{libro.aprobado}}' ><button style="color: white; margin-bottom:10%; background: crimson;">Quitar</button></a>
+          </div>
+          </div>
+
+          
+
+        </dialog>
+
+        {% endfor %}
+        <div style="display: flex;justify-content: center;margin-top: 1vw;flex-direction: column;align-items: center;">
+                <a href="{%url 'AgregarLibro'%}" class="botonEnviar"> <button type="submit"  style="color: white;">+ Agregar Libro</button></a>  
+            </div>
+      </ul>
+    </div>
+  </div>
+  </div>
+
+
+
+
+</section>
+
+
+{% endblock contenido %}

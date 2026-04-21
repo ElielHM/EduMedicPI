@@ -1,0 +1,7 @@
+Pillow==12.2.0
+django==6.0.1
+django-ckeditor==6.7.3
+pymysql==1.1.2
+django-ckeditor-5==s0.2.20
+sqlparse==0.5.5
+django-js-asset==3.1.2

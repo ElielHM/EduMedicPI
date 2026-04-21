@@ -1,0 +1,150 @@
+{% extends "sitio/estructura.html" %}
+{% block titulo %}Agregar un libro{% endblock titulo %}
+{% load static %}
+
+{% block contenido %}
+<script>
+    const menuuu= document.getElementById('biblioteca');
+    menuuu.classList.add("active")
+</script>
+<section id="hero" class="hero section light-background">
+    <hr style="margin-top: -10px;margin-bottom: 50px;">
+    <div class="container" style="width: 50%;">
+
+        <div style="display: flex;justify-items: center;justify-content: center;align-items: center;flex-direction: column;">
+            <h3>Registrar un libro</h3>
+            <p style="font-family: 'Century Gothic';">Los campos marcados con * son obligatorios</p>
+        </div>
+
+        <form action="{% url "NuevoLibro" %}" class="formL" id="agregar" method="POST" enctype="multipart/form-data" style="display: flex;flex-direction: column;justify-items: center;">
+            {% csrf_token %}
+            <label for="titulo">Titulo del libro*</label>
+            <input type="text" name="titulo" id="titulo" value="" >
+            <span class="error-message" id="tituloError"></span>
+<br>
+            <label for="autor">Autor del libro</label>
+            <input type="text" name="autor" id="autor" value="">
+            <span class="error-message"></span>
+<br>
+            <label for="isbn">ISBN</label>
+            <input type="text" name="isbn" id="isbn" maxlength="13" value="">  
+            <span class="error-message"></span>
+<br>
+            <label for="fecha">Fecha de publicación</label>
+            <input type="date" name="fecha" id="fecha" value="">
+            <span class="error-message"></span>
+            <br>
+            <label for="categoria">Categoria*</label>
+            <select name="categoria" id="categoria"  >
+                <option value="NA" hidden selected>-Seleccionar categoria-</option>
+                <option value="Anatomia">Anatomia</option>
+                <option value="Cardiologia">Cardiologia</option>
+                <option value="Enfermeria">Enfermeria</option>
+                <option value="Farmacologia">Farmacologia</option>
+                <option value="Fisiologia">Fisiologia</option>
+            </select>
+            <span class="error-message" id="catError"></span>
+<br>
+            <label for="url">Archivo*</label>
+            <input type="file" name="url" id="url" accept=".pdf" >
+            <span class="error-message" id="urlError"></span>
+<br>
+            <label for="portada">Portada del libro</label>
+            <input type="file" name="portada" id="portada" accept="image/*">
+            <span class="error-message" ></span>
+
+            <div style="display: flex;justify-content: center;margin-top: 1vw;flex-direction: column;align-items: center;">
+                <span id="successMessage" class="error-message" style="background-color: green;width: 11vw;font-size: 115%;text-align: center;"></span>
+                <button type="submit"  style="color: white;">Agregar Libro</button>
+            </div>
+
+        </form>
+    </div>
+</section>
+
+<script>
+    window.onload = function() {
+        document.getElementById('agregar').reset();
+
+        
+    }
+
+    const titulo = document.getElementById('titulo');
+    const categoria = document.getElementById('categoria');
+    const url = document.getElementById('url');
+    const form = document.getElementById('agregar')
+
+    titulo.addEventListener('blur',ValidarTitulo)
+
+
+    function ValidarTitulo(){
+        const valor = titulo.value.trim()
+        const error = document.getElementById('tituloError')
+
+        if (valor.length < 1){
+            error.classList.add('show')
+            error.textContent = 'Ingrese un titulo'
+        } else {
+            error.classList.remove('show')
+            error.textContent = ''
+            return true
+        }
+}
+        function ValidarCat(){
+        const valor = categoria.value.trim()
+        const error = document.getElementById('catError')
+
+        if (valor == 'NA'){
+            error.classList.add('show')
+            error.textContent = 'Seleccione una categoria'
+        } else {
+            error.classList.remove('show')
+            error.textContent = ''
+            return true
+        }
+
+    }
+
+    function ValidarURL(){
+        const valor = url.files.length
+        const error = document.getElementById('urlError')
+
+        if (valor == 0){
+            error.classList.add('show')
+            error.textContent = 'Ingrese un archivo'
+        } else {
+            error.classList.remove('show')
+            error.textContent = ''
+            return true
+        }
+
+    }
+
+    form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const tituloValido = ValidarTitulo();
+    const catValida= ValidarCat();
+    const urlValida= ValidarURL();
+
+    if(tituloValido&&catValida&&urlValida){
+        const success = document.getElementById('successMessage')
+        success.textContent = "Agregando Libro; Un administrador lo revisará";
+        success.classList.add('show');
+        
+        document.querySelectorAll('.valid').forEach(el => el.classList.remove('valid'));
+        
+        setTimeout(() => {
+            console.log("Login exitoso")
+            successMessage.classList.remove('show');
+            form.submit();
+        },2000);
+
+        
+    } 
+ })
+
+</script>
+
+{% endblock contenido %}
+

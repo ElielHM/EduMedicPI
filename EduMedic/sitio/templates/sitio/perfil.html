@@ -1,0 +1,65 @@
+{%extends 'sitio/estructura.html'%}
+{% block titulo %}Perfil de {{request.session.nombre}} {% endblock titulo %}
+{% load static %}
+{% block contenido %}
+<script>
+    const menuuu= document.getElementById('modelos');
+    menuuu.classList.add("active");
+</script>
+
+
+<section id="hero" class="hero section light-background" style="height: 45vw;">
+  <hr style="margin-top: -3%;margin-bottom: 50px;">
+  <div class="container" style="height: 40vw;" >
+
+    <div class="pfp">
+        <img id='pfp' src="{{request.session.pfp}}">
+        <label for="imagenPerfil" class="editImage" id="edit"><img src="{% static "sitio/img/edit.png" %}"   alt=""></label>
+        <form action="{% url "UpdatePFP" %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input name="imagenPerfil" type="file" accept="image/*" id="imagenPerfil" style="display: none;" onchange="this.form.submit()">
+        </form>
+        
+    </div>
+
+    <div class="datos">
+      <div class="campoDato">
+        <strong>Nombre de Usuario</strong>
+        <br>
+        <input type="text" disabled value="{{request.session.nombre}}">
+      </div>
+
+      <div class="campoDato">
+        <strong>Contraseña</strong>
+        <br>
+        <input type="password" id="password" disabled value="{{request.session.password}}">
+        <button type="button" onclick="mostrarPass()" class="password-toggle" id="passwordToggle" aria-label="Toggle password visibility">
+              <span class="eye-icon"></span>
+          </button>
+      </div>
+
+      <div class="campoDato">
+        <strong>Email</strong>
+        <br>
+        <input type="email" disabled value="{{request.session.email}}">
+      </div>
+
+    </div>
+
+    <div class="CerrarSesion">
+    <a href="{%url 'Comienzo'%}" >
+    <button class=" SignOut">
+      Cerrar sesión
+    </button>
+    </a>
+    </div>
+  </div>
+</section>
+
+
+
+{% endblock contenido %}
+
+{% block scripts %}
+  <script src="{%static 'sitio/js/perfil.js'%}"></script>
+{% endblock scripts %}

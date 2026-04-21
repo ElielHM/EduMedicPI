@@ -1,0 +1,266 @@
+{% extends "sitio/estructura.html" %}
+{% block titulo %} Nosotros {% endblock titulo %} 
+{% load static %}
+
+{% block contenido %}
+<script>
+    const menuuu= document.getElementById('aboutUs');
+    menuuu.classList.add("active")
+</script>
+    <!-- ======== hero-section start ======== -->
+    <section id="home" class="hero-section">
+      <div class="container">
+        <div class="row align-items-center position-relative">
+          <div class="col-lg-6">
+            <div class="hero-content">
+              <h1 class="wow fadeInUp" data-wow-delay=".4s">
+                Nuestro futuro en tus manos
+              </h1>
+              <p class="wow fadeInUp" data-wow-delay=".6s">
+                La herramienta académica para estudiantes de Enfermería y Medicina que necesitas ahora está aquí. Inicia sesión ahora con EduMedic
+              </p>
+              <a
+                title="Formulario de registro"
+                href="{% url "Signup" %}"
+                class="main-btn border-btn btn-hover wow fadeInUp"
+                data-wow-delay=".6s"
+                >Registrarte</a
+              >
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="hero-img wow fadeInUp" data-wow-delay=".5s">
+              <img src="{% static "sitio/img/logo.png" %}" alt="" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ======== hero-section end ======== -->
+
+    <!-- ======== feature-section start ======== -->
+    <section id="features" class="feature-section pt-120">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-4 col-md-8 col-sm-10">
+            <div class="single-feature">
+              <div class="icon">
+                <img width="130" height="130"  src="{% static "sitio/img/mision.png" %}" alt="" />
+              </div>
+              <div class="content">
+                <h3>Misión</h3>
+                <p>Facilitar el entendimiento de materias del área de salud para los estudiantes de ésta, brindando herramientas de apoyo académico interactivas y materiales confiables.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-8 col-sm-10">
+            <div class="single-feature">
+              <div class="icon">
+                <img width="130" height="130" src="{% static "sitio/img/vision.png" %}" alt="" />
+              </div>
+              <div class="content">
+                <h3>Visión</h3>
+                <p>Ser una plataforma reconocida que logre brindar materiales de calidad que ayuden a las personas que cursen carreras del área de salud, además de siempre proporcionar información actualizada y confiable.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-8 col-sm-10">
+            <div class="single-feature">
+              <div class="icon">
+                <img width="130" height="130" src="{% static "sitio/img/values.png" %}" alt="" />
+              </div>
+              <div class="content">
+                <h3>Valores</h3>
+                <p>
+                  Accesibilidad, nos aseguramos de que todos los usuarios de EduMedic tengan las mismas oprtunidades. <br> Precisión, verificamos que la información contenida sea precisa, véridica por ello, estamos en constante actualización.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ======== feature-section end ======== -->
+
+    <!-- ======== Biblioteca ======== -->
+    <section id="about" class="about-section pt-150">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-xl-6 col-lg-6">
+            <div class="about-img">
+              <img src="{% static "sitio/img/biblioteca.png" %}" alt="" class="w-100" />
+              <img
+                src="{% static "sitio/img/about/about-left-shape.svg" %}"
+                alt=""
+                class="shape shape-1"
+              />
+              <img
+                src="{% static "sitio/img/about/left-dots.svg" %}"
+                alt="Biblioteca digital de EduMedic"
+                class="shape shape-2"
+              />
+            </div>
+          </div>
+          <div class="col-xl-6 col-lg-6">
+            <div class="about-content">
+              <div class="section-title mb-30">
+                <h2 class="mb-25 wow fadeInUp" data-wow-delay=".2s">
+                  Biblioteca digital comunitaria
+                </h2>
+                <p class="wow fadeInUp" data-wow-delay=".4s">
+                  Sabemos lo díficil que puede llegar a ser encontrar referencias adecuadas, actualizadas y verificadas, es por ello que EduMedic y otros usuarios te brindamos bibliografía médica.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ======== fin Biblioteca ======== -->
+
+    <!-- ======== Medicamentos ======== -->
+    <section id="about" class="about-section pt-150">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-xl-6 col-lg-6">
+            <div class="about-content">
+              <div class="section-title mb-30">
+                <h2 class="mb-25 wow fadeInUp" data-wow-delay=".2s">
+                  Buscador de medicamentos
+                </h2>
+                <p class="wow fadeInUp" data-wow-delay=".4s">
+                  Toda la información base de los medicamentos más comúnes en México. (Lista proprcionada por el IMSS)
+                </p>
+              </div>
+              <ul>
+                <li>Descripción</li>
+                <li>Uso</li>
+                <li>Dosis</li>
+                <li>Efectos adversos</li>
+                <li>Riesgo en el embarazo</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-xl-6 col-lg-6 order-first order-lg-last">
+            <div class="about-img-2">
+              <img src="{% static "sitio/img/medicamentos.png" %}" alt="Apartado de medicamentos en EduMedic" class="w-100" />
+              <img
+                src="{% static "sitio/img/about/about-right-shape.svg"%}"
+                alt=""
+                class="shape shape-1"
+              />
+              <img
+                src="{% static "sitio/img/about/right-dots.svg"%}"
+                alt=""
+                class="shape shape-2"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ======== fin medicamentos ======== -->
+
+        <!-- ======== Modelos 3D ======== -->
+    <section id="about" class="about-section pt-150">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-xl-6 col-lg-6">
+            <div class="about-img">
+              <img src="{% static "sitio/img/modelos.png" %}" alt="" class="w-100" />
+              <img
+                src="{% static "sitio/img/about/about-left-shape.svg" %}"
+                alt=""
+                class="shape shape-1"
+              />
+              <img
+                src="{% static "sitio/img/about/left-dots.svg" %}"
+                alt=""
+                class="shape shape-2"
+              />
+            </div>
+          </div>
+          <div class="col-xl-6 col-lg-6">
+            <div class="about-content">
+              <div class="section-title mb-30">
+                <h2 class="mb-25 wow fadeInUp" data-wow-delay=".2s">
+                  Apartado de Realidad Virtual
+                </h2>
+                <p class="wow fadeInUp" data-wow-delay=".4s">
+                  Visualiza en 3D el cuerpo humano, ¿te cuesta la anatomía, fisiología, planimetría? No te preocupes, nosotros te echamos una mano con eso.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ======== fon de Modelos 3d ======== -->
+
+    <!-- ======== Notaaas ======== -->
+    <section id="about" class="about-section pt-150">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-xl-6 col-lg-6">
+            <div class="about-content">
+              <div class="section-title mb-30">
+                <h2 class="mb-25 wow fadeInUp" data-wow-delay=".2s">
+                  Toma notas donde y cuando sea
+                </h2>
+                <p class="wow fadeInUp" data-wow-delay=".4s">
+                 ¡Todo en un mismo lugar! EduMedic te ofrece una seccion para que puedas realizar notas; texto, tablas, imágenes si pagar ni un centavo y desde cualquier dispositivo.
+                </p>
+              </div>
+              <ul>
+                <li>Crear</li>
+                <li>Editar</li>
+                <li>Eliminar</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-xl-6 col-lg-6 order-first order-lg-last">
+            <div class="about-img-2">
+              <img src="{% static "sitio/img/notaas.png" %}" alt="" class="w-100" />
+              <img
+                src="{% static "sitio/img/about/about-right-shape.svg"%}"
+                alt=""
+                class="shape shape-1"
+              />
+              <img
+                src="{% static "sitio/img/about/right-dots.svg"%}"
+                alt=""
+                class="shape shape-2"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ======== fin de el mejor apartado ======== -->
+
+    <!-- ======== footer start ======== -->
+    <footer class="footer">
+      <div class="container">
+        <div class="widget-wrapper">
+          <div class="row">
+            <div class="col-xl-4 col-lg-4 col-md-6">
+              <div class="footer-widget">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- ======== footer end ======== -->
+
+    <!-- ======== scroll-top ======== -->
+    <a title="Regresar al inicio" href="#" class="scroll-top btn-hover">
+      ^
+    </a>
+
+    <!-- ======== JS here ======== -->
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/wow.min.js"></script>
+    <script src="assets/js/main.js"></script>
+{%endblock%}
+</html>

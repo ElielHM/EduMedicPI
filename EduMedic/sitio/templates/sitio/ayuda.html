@@ -1,0 +1,75 @@
+
+{% extends "sitio/estructura.html" %}
+{% block titulo %}Realidad Virtual{% endblock titulo %}
+{% block contenido %}
+{% load static %}
+<script>
+    const menuuu= document.getElementById('rv');
+    menuuu.classList.add("active")
+</script>
+<div class="aframe">
+<a-scene embedded>
+   
+   <a-camera>
+            <a-cursor
+                geometry="primitive: circle; radius:0.01 px"
+                color="#ACCBE8"
+                raycaster="objects: .point"
+                fuse="true"
+                fusetimeout="500"
+            ></a-cursor>
+        </a-camera>
+
+             <a-asssets>
+            <!--Botones-->
+            <image
+                src="{% static "sitio/img/back.png" %}"
+                id="back"
+             ></image>
+            <image
+                src="{% static "sitio/img/play.png"%}"
+                id="play"
+            ></image>
+            <image
+                src="{% static "sitio/img/stop.png"%}"
+                id="stop"
+            ></image>
+        </a-asssets>
+
+        <a-plane
+            transparent="true"
+            position="-7, 5, -5"
+           class=". point"
+           onclick="window.location.href='{% url "RV" %}'"
+            src="#back"
+            onmouseenter="document.querySelector('#ayudap').setAttribute('visible', true)"
+           onmouseleave="document.querySelector('#ayudap').setAttribute('visible', false)"
+        >
+                <a-entity
+                    position="1, -1, 0"
+                    text="
+                        value: Regresar;
+                        color: #D3D5D3;
+                        align: center;
+                        width:5
+                        "
+                    visible="false"
+                    id="ayudap"
+                ></a-entity>
+        </a-plane>
+
+        <a-video
+           id="video"
+           src="#video" width="8" height="4" position="0, 2, -5">
+       </a-video>
+       <!-- Botón de pause/stopp-->
+         <a-plane
+               transparent="true" position="0, 0.7, -4.9" class="point" src="#play"
+               onmouseleave="document.querySelector('#video').pause(), this.setAttribute('src', '#play')"
+               onmouseenter="document.querySelector('#video').play(), this.setAttribute('src', '#stop')">
+           </a-plane>
+   
+</a-scene>
+</div>
+
+{% endblock contenido %}

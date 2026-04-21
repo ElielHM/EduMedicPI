@@ -1,0 +1,52 @@
+{% extends "sitio/estructura.html" %} 
+{% block titulo %} Añadir Nota {% endblock titulo %} 
+{% load static %}
+
+{% block contenido %}
+
+<script src="{% static "sitio/js/ckeditor/ckeditor.js" %}"></script>
+
+<script>
+    window.onload = function() {
+        CKEDITOR.replace('editor', {versionCheck: false, language: 'es',ui:'es',content:'es'}); 
+        CKEDITOR.instances.editor.setData('') //Codigo para dar un valor default a CKEDITOR
+    };
+</script>
+
+<section id="hero" class="hero section light-background">
+  <hr style="margin-top: -10px;margin-bottom: 50px;">
+  <div class="container"> 
+    <form action="{%url 'NuevaNota'%}" method="POST">
+    {% csrf_token %}
+    <div style='margin-left: 2%;margin-right: 2%;border: 2px solid black;border-radius: 20px;padding: 3%;'>
+        
+       <input title="Título de la nota" type="text" value="Nueva Nota" id="titulo" name="titulo" style="font-size:25px;"></input>
+    <br>
+    <br>
+            <textarea cols="80" rows="12" id="editor" name="contenido">
+
+            </textarea>
+  
+            
+    <br>
+    <div style="display: flex;justify-content: flex-end;">
+    <button style="
+        background: linear-gradient(165deg, #1A3263 0%, #ACCBE8 100%);
+        border: none;
+        border-radius: 12px;
+        color:white;
+        padding: 16px 24px;
+        font-size: 16px;
+        font-family: 'Century Gothic';" type="submit">Crear Nota</button>
+    </div>
+    </form>
+    </div>
+  </div>
+
+
+
+
+</section>
+
+
+{% endblock contenido %}
