@@ -1,0 +1,89 @@
+{% extends "sitio/estructura.html" %}
+{% block titulo %}Sistema cardiovascular{% endblock titulo %}
+{% block body %} style="overflow: hidden" {% endblock body %}
+{% block contenido %}
+{% load static %}
+<script>
+    const menuuu= document.getElementById('rv');
+    menuuu.classList.add("active")
+</script>
+<div class="aframe">
+<a-scene embedded>
+   
+
+        <a-camera>
+            <a-cursor
+                geometry="primitive: circle; radius:0.01 px"
+                color="#ACCBE8"
+                raycaster="objects: .point"
+                fuse="true"
+                fusetimeout="500"
+            ></a-cursor>
+        </a-camera>
+
+           <a-asssets>
+            <!--Botones-->
+            <image
+                src="{% static "sitio/img/back.png" %}"
+                id="back"
+             ></image>
+            <image
+                src="{% static "sitio/img/home.png" %}"
+                id="home"
+            ></image>
+            <a-gltf-model
+                src="{% static "sitio/img/cardiac.glb" %}"
+                id="modelo"
+            ></a-gltf-model>
+        </a-asssets>
+
+        <a-plane
+            transparent="true"
+            position="-7, 5, -5"
+           class=". point"
+           onclick="window.location.href='{% url "Sistemas" %}'"
+           src="#back"onmouse="document.querySelector('#ayudap').setAttribute('visible', false)"
+           src="#back"onmouseleave="document.querySelector('#ayudap').setAttribute('visible', false)"
+        >
+            <a-entity
+           position="1, -0.5, 0"
+           text="
+               value: Regresar;
+               color: gray;
+               align: center;
+               width:7
+               "
+           visible="false"
+           id="ayudap"
+       ></a-entity>
+        </a-plane>
+
+        <a-plane
+            transparent="true"
+            position="-7, 3.5, -5"
+           class=". point"
+           onclick="window.location.href='{% url "RV" %}'"
+            src="#home"onmouseleave="document.querySelector('#homee').setAttribute('visible', false)"
+        >
+            <a-entity
+           position="1, -0.5, 0"
+           text="
+               value: Inicio;
+               color: gray;
+               align: center;
+               width:7
+               "
+           visible="false"
+           id="homee"
+       ></a-entity>
+        </a-plane>
+   
+        <a-entity gltf-model="#modelo"
+             rotation="0, 0, 0"
+             position="0, 1, -5"
+             scale="2, 2, 2"
+         ></a-entity>
+</a-scene>
+</div>
+
+{% endblock contenido %}

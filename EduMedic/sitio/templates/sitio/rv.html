@@ -1,0 +1,93 @@
+{% extends "sitio/estructura.html" %}
+{% block titulo %}Realidad Virtual{% endblock titulo %}
+{% block body %} style="overflow: hidden" {% endblock body %}
+{% block contenido %}
+{% load static %}
+<script>
+    const menuuu= document.getElementById('rv');
+    menuuu.classList.add("active");
+</script>
+
+<div class="aframe">
+<a-scene embedded>
+   
+       <a-camera>
+            <a-cursor
+                geometry="primitive: circle; radius:0.01 px"
+                color="#ACCBE8"
+                raycaster="objects: .point"
+                fuse="true"
+            ></a-cursor>
+        </a-camera>
+
+        <a-asssets>
+            <!--Botones-->
+            <image
+                src="{% static "sitio/img/back.png" %}"
+                id="back"
+             ></image>
+            <image
+                src="{% static "sitio/img/home.png"%}"
+                id="home"
+            ></image>
+            <image
+               src="{% static "sitio/img/ayude.png"%}"
+                id="ayude"
+            ></image>
+            <image
+               src="{% static "sitio/img/option.png"%}"
+                id="option"
+            ></image>
+            <image
+               src="{% static "sitio/img/optionn.png"%}"
+                id="optionn"
+            ></image>
+        </a-asssets>
+
+        <a-plane
+            width="0.5" height="0.5"
+            transparent="true"
+            position="7, 5, -5"
+           class=". point"
+           src="#ayude"
+           onmouseenter="document.querySelector('#ayudap').setAttribute('visible', true)"
+           onmouseleave="document.querySelector('#ayudap').setAttribute('visible', false)"
+           onclick="window.location.href='{% url "Ayuda" %}'"
+        >
+            <a-entity
+           position="0.5, -0.5, 0"
+           text="
+               value: Ayuda;
+               color: gray;
+               align: left;
+               width:4
+               "
+           visible="false"
+           id="ayudap"
+       ></a-entity>
+        </a-plane>
+
+        <!--Options-->
+        <!--Cortes-->
+        <a-plane
+            width="5" height="5"
+            transparent="true"
+            position="-4, 1, -5"
+           class=". point"
+           onclick="window.location.href='{% url "Cortes" %}'"
+            src="#option">
+        </a-plane>
+        <!--Sistemas-->
+        <a-plane
+            width="5" height="5"
+            transparent="true"
+            position="4, 1, -5"
+           class=". point"
+           onclick="window.location.href='{% url "Sistemas" %}'"
+            src="#optionn">
+        </a-plane>
+   
+</a-scene>
+</div>
+
+{% endblock contenido %}

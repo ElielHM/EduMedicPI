@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% load static %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block titulo %}{% endblock titulo %}</title>
+  <link href="{% static 'sitio/css/bootstrap.css' %}" rel="stylesheet">
+  <link href="{% static 'sitio/css/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'sitio/css/glightbox.css' %}" rel="stylesheet">
+  <link rel="icon" type="image/x-icon" href="{% static "sitio/img/favicon.ico" %}">
+  <link href="{% static 'sitio/css/swiper-bundle.min.css' %}" rel="stylesheet">
+  <link href="{% static 'sitio/css/main.css' %}" rel="stylesheet" >
+  <link href="{% static 'sitio/css/mainn.css' %}" rel="stylesheet">
+  <link href="{% static 'sitio/css/animate.css' %}" rel="stylesheet">
+  <script src="{% static "sitio/js/aframe.js" %}"></script>
+  <script src="{% static "sitio/js/mainn.js" %}"></script>
+  <script src="{% static "sitio/js/boootstrap.bundle.min.js" %}"></script>
+</head>
+<body style='overflow-x:hidden;{%block body%}{%endblock body%}'>
+    
+     <!-- <header id="header" class="header d-flex align-items-center fixed-top" style="background-color: white">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+
+      <a href="{% url "Inicio" %}" style="text-align: center;" class="logo d-flex align-items-center">
+        <!-- Uncomment the line below if you also wish to use an image logo -->
+        <!-- <img src="assets/img/logo.png" alt=""> 
+        <img  src="{% static "sitio/img/logo.png" %}" title="Inicio">
+      </a>
+
+      <nav id="navmenu" class="navmenu" >
+        <ul> 
+          <li><a title="Perfil" style="font-family: 'Century Gothic', 'Montserrat','Arial';" href="{% url "Perfil" %}"><figure style="text-align: center;"><img style="height: 50px;width: 50px;align-items: center;border-radius: 25px;" src="{{request.session.pfp}}" alt=""><figcaption>{{request.session.nombre}}</figcaption></figure></a></li>
+          <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+        </ul>
+      </nav>
+    </div>
+  </header> 
+ -->
+      <div class="navbar-area">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-lg-12">
+
+              <nav class="navbar navbar-expand-lg">
+                <a id="inicie" class="navbar-brand" href="{% url "Inicio" %}">
+                  <img src="{% static "sitio/img/logo.svg" %}" title="Inicio" alt="EduMedic" />
+                </a>
+                <button
+                  class="navbar-toggler"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#navbarSupportedContent"
+                  aria-controls="navbarSupportedContent"
+                  aria-expanded="false"
+                  aria-label="Toggle navigation"
+                >
+                  <span class="toggler-icon"></span>
+                  <span class="toggler-icon"></span>
+                  <span class="toggler-icon"></span>
+                </button>
+
+                <div
+                  class="collapse navbar-collapse sub-menu-bar"
+                  id="navbarSupportedContent"
+                >
+                  <ul id="nav" class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                      <a id="aboutUs" style="color:#1A3263" class="page-scroll" href="{% url "AboutUs" %}">Nosotros</a>
+                    </li>
+                    <li class="nav-item">
+                      <a id="biblioteca" style="color:#1A3263" class="page-scroll" href="{% url "Libros" %}">Biblioteca</a>
+                    </li>
+                    <li class="nav-item">
+                      <a id="medicamentos" style="color:#1A3263" class="page-scroll" href="{% url "Medicamentos" %}">Medicamentos</a>
+                    </li>
+                    <li class="nav-item">
+                      <a id="rv" style="color:#1A3263" class="page-scroll" href="{% url "RV" %}">Modelos 3D</a>
+                    </li>
+                    <li class="nav-item">
+                      <a id="notasnav" style="color:#1A3263" class="page-scroll " href="{% url "Notas" %}">Notas</a>
+                    </li>
+                    <li class="nav-item">
+                      <a id="perfil" style="color:#1A3263" title="Perfil" style="font-family: 'Century Gothic', 'Montserrat','Arial';" href="{% url "Perfil" %}">
+                        <figure style="text-align: center;">
+                          <img style="height: 25px;width: 25px;align-items: center;border-radius: 25px;" src="{{request.session.pfp}}" alt="">
+                        </figure> 
+                      </a>
+                      <a style="color:#1A3263" title="Usuario" href="{% url "Perfil" %}"><figcaption>{{request.session.nombre}}
+                          </figcaption></a>
+                    </li>
+
+                  </ul>
+                </div>
+                <!-- navbar collapse -->
+              </nav>
+              <!-- navbar -->
+            </div>
+          </div>
+          <!-- row -->
+        </div>
+        <!-- container -->
+      </div>
+      <!-- navbar area -->
+
+
+    {% block contenido %}
+    {% endblock contenido %}
+
+</body>
+<!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <!-- Vendor JS Files -->
+   {% block scripts %}
+
+   {% endblock scripts %}
+  <script src="{% static 'sitio/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'sitio/js/aos.js' %}"></script>
+  <script src="{% static 'sitio/js/glightbox.min.js' %}"></script>
+  <script src="{% static 'sitio/js/purecounter_vanilla.js' %}"></script>
+  <script src="{% static 'sitio/js/imagesloaded.pkgd.min.js' %}"></script>
+  <script src="{% static 'sitio/js/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static 'sitio/js/swiper-bundle.min.js' %}"></script>
+
+  <!-- Main JS File -->
+</html>

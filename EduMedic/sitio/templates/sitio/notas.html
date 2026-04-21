@@ -1,0 +1,102 @@
+{% extends "sitio/estructura.html" %}
+{% block titulo %} Notas {% endblock titulo %} 
+{% load static %}
+
+{% block contenido %}
+
+<script>
+  function card(id) {
+    document.getElementById("card" + id).showModal();
+  }
+
+  const menuuu= document.getElementById('notasnav');
+  menuuu.classList.add("active")
+
+  function closeC(id){
+    document.getElementById("card" + id).close();
+    
+    }
+
+  function eliminar(id){
+    document.getElementById("eliminar" + id).showModal();
+    }
+
+  function closeE(id){
+    document.getElementById("eliminar" + id).close();
+  }
+
+</script>
+
+<section id="hero" class="hero section light-background">
+  <hr style="font-family: 'Century Gothic'; margin-top: -3%; margin-bottom: 50px;">
+  <div class="container"> 
+    <div class="notas">
+        {% for nota in notas %}
+        
+        <div class="notaInd" onclick="card('{{nota.id}}')">
+          
+            <h5>{{nota.titulo}}</h5>
+            <p>{{nota.contenido | safe}}</p>
+            
+        </div>
+
+        <dialog class="notadlg"  id="card{{nota.id}}">
+          <div style="display: flex;background-color: white;position: fixed; width: 77%; height:9%; margin-top: -15px; padding-bottom: 30px;border-radius: 20px;">
+            <a style="font-family: 'Century Gothic'; margin-right:1%;width: 10%;margin-top: 6px;margin-left: 3%;" href="{%url 'EditorNotas' nota.id%}"><button style="
+              background-color: #ACCBE8;
+              color: white;
+              border: none;
+              border-radius: 12px;
+              padding: 16px 24px;
+              font-size: 16px;
+              font-family: 'Century Gothic';">Editar</button></a>
+            <!--#ACCBE8-->
+            <a style="font-family: 'Century Gothic'; margin-right:2%;width: 10%;margin-top: 6px;margin-left: 1%;cursor: pointer;" onclick="eliminar('{{nota.id}}')"><button style="background-color: crimson;
+              color: white;
+              border: none;
+              border-radius: 12px;
+              padding: 16px 24px;
+              font-size: 16px;
+              font-family: 'Century Gothic';">Eliminar</button></a>
+            <p style="flex: 85%;"></p>
+            <a style="justify-content: right;margin-top:5px;cursor: pointer;" onclick="closeC('{{nota.id}}')"><img style="height: 30px;width: 30px;" src="{% static "sitio/img/cerrar.png" %}" alt=""></a>
+            <br>
+          </div>
+          <div style="margin: 3%;">
+            <h4 style="margin-top: 5%; font-family='Century Gothic'"><strong>{{nota.titulo}}</strong></h4> <br>
+            <p>{{nota.contenido| safe}}</p>
+          </div>
+          <div style="display:flex;justify-content: end;">
+          </div>
+        </dialog>
+
+        <dialog style="width: 40%;height: 30%;text-align: center;align-items: center;" id="eliminar{{nota.id}}">
+          <p style="font-family: 'Century Gothic'; margin-top: 7%;">¿Deseas eliminar esta nota permanentemente?</p>
+          <strong>ESTA ACCIÓN NO SE PUEDE DESHACER</strong>
+          <br></br>
+          <div style="font-family: 'Century Gothic'; display:flex;justify-content: center;">
+            <a style="font-family: 'Century Gothic'; margin-right:1%;width: 20%;margin-top: 7px;margin-left: 3%;" href="{%url 'EliminarNota' nota.id%}"><button style="background-color: crimson;
+              color: white;
+              border: none;
+              border-radius: 12px;
+              padding: 16px 24px;
+              font-size: 16px;
+              font-family: 'Century Gothic';">Eliminar</button>
+            </a>
+            <a style="font-family: 'Century Gothic'; margin-right:2%;width: 20%;margin-top: 7px;margin-left: 1%;cursor: pointer;" onclick="closeE('{{nota.id}}')"><button style="width: 100%; background-color: green;
+              color: white;
+              border: none;
+              border-radius: 12px;
+              padding: 16px 24px;
+              font-size: 16px;">NO</button></a>
+          </div>
+        </dialog>
+        {% endfor %}
+    </div>
+    <div style="display:flex;justify-content: end;">
+    </div>
+    </div>        
+  </div>
+</section>
+  <a style="right:2%;position: fixed;bottom: 5%;" href="{% url 'CrearNota' %}" class='botonNew'><button style="color:white">+ Agregar una nueva nota</button></a>
+{% endblock contenido%}
